@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NKL Assistance — Design System Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #223D72;
+    --secondary: #54595F;
+    --text: #7A7A7A;
+    --accent: #E2E43C;
+    --white: #FFFFFF;
+    --black: #000000;
+    --surface-light: #F5F5F5;
+    --surface-border: #E5E5E5;
+    --gray-300: #3A3A3A;
+    --gray-400: #424242;
+    --gray-500: #4B4F58;
+    --navy-alt: #294E88;
+    --orange-red: #EB5826;
+    --orange: #F68920;
+    --golden: #C49427;
+    --burgundy: #9C2348;
+    --orange-alt: #F37C22;
+
+    --font-brand: 'Outfit', 'Intro', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-secondary: 'Roboto Slab', Georgia, serif;
+
+    --radius-pill: 33px;
+    --radius-md: 8px;
+    --radius-sm: 4px;
+    --radius-full: 9999px;
+
+    --space-section: 80px;
+    --container-max: 1140px;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  .container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+  section { padding: var(--space-section) 0; }
+  section + section { border-top: 1px solid var(--surface-border); }
+
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-brand); color: var(--gray-300); }
+
+  .section-label {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .section-title { margin-bottom: 0.5rem; font-family: var(--font-brand); }
+  .section-subtitle { color: var(--text); max-width: 600px; margin-bottom: 32px; font-weight: 300; font-size: 1.1rem; }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--primary);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 20px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+  .page-header h1 { color: var(--white); font-family: var(--font-brand); font-size: 2.5rem; font-weight: 100; }
+  .page-header .desc { max-width: 600px; margin: 12px auto 0; font-size: 1.1rem; color: rgba(255,255,255,0.8); font-weight: 300; }
+  .page-header .meta {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 16px;
+    font-family: var(--font-body);
+  }
+
+  /* ── Color Palette ── */
+  .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+  .palette-swatch { border-radius: var(--radius-md); overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); transition: transform 0.2s; }
+  .palette-swatch:hover { transform: translateY(-2px); }
+  .palette-color { height: 70px; display: flex; align-items: flex-end; padding: 8px; }
+  .palette-color .label { font-family: var(--font-body); font-size: 0.65rem; font-weight: 500; background: rgba(255,255,255,0.85); color: var(--gray-300); padding: 2px 6px; border-radius: 3px; }
+  .palette-info { padding: 8px; background: var(--white); }
+  .palette-name { font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; color: var(--gray-300); }
+  .palette-hex { font-family: monospace; font-size: 0.7rem; color: var(--text); }
+
+  .palette-group-label {
+    grid-column: 1 / -1;
+    font-family: var(--font-brand);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    padding: 16px 0 4px;
+    border-bottom: 2px solid var(--surface-border);
+    margin-bottom: 4px;
+  }
+
+  /* ── Typography ── */
+  .type-grid { display: flex; flex-direction: column; gap: 8px; }
+  .type-card {
+    background: var(--white);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+  .type-card:hover { border-color: var(--primary); }
+  .type-label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 8px; }
+  .type-meta { font-family: var(--font-body); font-size: 0.8rem; color: var(--text); margin-top: 8px; }
+  .type-note { font-family: var(--font-body); font-size: 0.75rem; color: var(--orange-red); font-style: italic; margin-top: 2px; }
+
+  /* ── Components ── */
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-section); gap: 24px; }
+  .component-card {
+    background: var(--white);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .component-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+  .component-preview {
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--surface-light);
+    border-bottom: 1px solid var(--surface-border);
+  }
+  .component-preview.hero-bg {
+    background: var(--primary);
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  .component-preview.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    mix-blend-mode: multiply;
+  }
+  .component-preview.dark-overlay-bg {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23223D72" width="100" height="100"/></svg>');
+    background-size: cover;
+    background-position: bottom center;
+  }
+  .component-info { padding: 16px 20px; }
+  .component-name { font-family: var(--font-body); font-size: 0.85rem; font-weight: 600; color: var(--gray-300); margin-bottom: 4px; }
+  .component-desc { font-size: 0.8rem; color: var(--text); font-weight: 400; }
+  .component-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 8px; }
+  .component-tag {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: var(--surface-light);
+    color: var(--text);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+
+  /* ── NKLA Button Styles ── */
+  .btn-nkla {
+    display: inline-block;
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 400;
+    padding: 16px 40px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--white);
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-nkla:hover {
+    background: var(--accent);
+    color: var(--secondary);
+    border-color: var(--accent);
+  }
+
+  .btn-nkla-primary {
+    display: inline-block;
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 400;
+    padding: 16px 40px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--primary);
+    background: transparent;
+    color: var(--primary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-nkla-primary:hover {
+    background: var(--primary);
+    color: var(--accent);
+    border-color: var(--primary);
+  }
+
+  .btn-nkla-accent {
+    display: inline-block;
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 400;
+    padding: 16px 40px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: var(--secondary);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-nkla-accent:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  /* ── Hero Demo ── */
+  .hero-demo {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    background: var(--primary);
+    overflow: hidden;
+  }
+  .hero-demo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    mix-blend-mode: multiply;
+  }
+  .hero-demo .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--navy-alt) 100%);
+  }
+  .hero-demo .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 79%;
+  }
+  .hero-demo h1 {
+    font-family: var(--font-brand);
+    font-size: 2.2rem;
+    font-weight: 100;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .hero-demo p {
+    font-family: var(--font-brand);
+    font-size: 1.1rem;
+    font-weight: 200;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 24px;
+  }
+
+  /* ── Icon Feature Cards ── */
+  .icon-feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+  .icon-feature {
+    padding: 24px;
+    text-align: left;
+  }
+  .icon-feature .icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+  .icon-feature h3 {
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+  .icon-feature p {
+    font-family: var(--font-brand);
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ── Stats / Benefits ── */
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; }
+  .benefit-card {
+    background: var(--white);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    text-align: center;
+  }
+  .benefit-card .icon {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: var(--accent);
+  }
+  .benefit-card h3 {
+    font-family: var(--font-brand);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .benefit-card p {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .benefit-card .stat {
+    font-family: var(--font-brand);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ─── Layout Reference ─── */
+  .layout-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .layout-card {
+    background: var(--white);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+  }
+  .layout-card .lay-label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .layout-card .lay-value {
+    font-family: var(--font-brand);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .layout-card .lay-detail {
+    font-family: monospace;
+    font-size: 0.75rem;
+    color: var(--text);
+  }
+
+  .divider-accent {
+    width: 80px; height: 4px;
+    background: var(--accent);
+    border-radius: var(--radius-full);
+    margin: 32px auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero-demo h1 { font-size: 1.6rem; }
+    .hero-demo { padding: 24px; }
+    .hero-demo .hero-content { max-width: 100%; }
+    .page-header h1 { font-size: 1.8rem; }
+    .palette-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── Header ─── -->
+<header class="page-header">
+  <h1>NKL Assistance</h1>
+  <p class="desc">Especialistas en asistencias — diseñamos planes de asistencia para acompañar a sus clientes en cada momento de la experiencia con su servicio.</p>
+  <p class="meta">28 colores · 13 escalas tipográficas · 8 componentes · Design tokens vía DESIGN.md</p>
+</header>
+
+<div class="container">
+
+<!-- ─── Stats ─── -->
+<section>
+  <span class="section-label">Overview</span>
+  <h2 class="section-title">Design at a Glance</h2>
+  <p class="section-subtitle">B2B assistance services company. Professional trust meets compassionate service. Deep navy anchor with a distinctive lime-yellow accent.</p>
+
+  <div class="benefits-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));">
+    <div class="benefit-card" style="padding:16px;">
+      <span class="stat" style="font-size:1.8rem;">28</span>
+      <p style="font-size:0.85rem;">Color Tokens</p>
+    </div>
+    <div class="benefit-card" style="padding:16px;">
+      <span class="stat" style="font-size:1.8rem;">3</span>
+      <p style="font-size:0.85rem;">Font Families</p>
+    </div>
+    <div class="benefit-card" style="padding:16px;">
+      <span class="stat" style="font-size:1.8rem;">8</span>
+      <p style="font-size:0.85rem;">Components</p>
+    </div>
+    <div class="benefit-card" style="padding:16px;">
+      <span class="stat" style="font-size:1.8rem;">Intro</span>
+      <p style="font-size:0.85rem;">Custom Brand Font</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Colors ─── -->
+<section>
+  <span class="section-label">01 · Colors</span>
+  <h2 class="section-title">The Palette</h2>
+  <p class="section-subtitle">Navy (#223D72) anchors as primary brand color. Lime yellow (#E2E43C) drives interaction. Warm oranges and golds for accent variety.</p>
+
+  <div class="palette-grid">
+
+    <div class="palette-group-label">Primary Brand Colors</div>
+
+    <div class="palette-swatch" style="border:2px solid var(--primary);">
+      <div class="palette-color" style="background:#223D72;">
+        <span class="label">★ primary</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Navy</div>
+        <div class="palette-hex">#223D72</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#294E88;">
+        <span class="label">navy-alt</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Navy Alt</div>
+        <div class="palette-hex">#294E88</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch" style="border:2px solid var(--accent);">
+      <div class="palette-color" style="background:#E2E43C;">
+        <span class="label">★ accent</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Lime Yellow</div>
+        <div class="palette-hex">#E2E43C</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#54595F;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">secondary</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Slate</div>
+        <div class="palette-hex">#54595F</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#7A7A7A;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">text</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Body Text</div>
+        <div class="palette-hex">#7A7A7A</div>
+      </div>
+    </div>
+
+    <div class="palette-group-label">Accent Variations</div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#EB5826;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">orange-red</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Orange Red</div>
+        <div class="palette-hex">#EB5826</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#F68920;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">orange</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Orange</div>
+        <div class="palette-hex">#F68920</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#F37C22;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">orange-alt</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Orange Alt</div>
+        <div class="palette-hex">#F37C22</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#C49427;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">golden</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Golden</div>
+        <div class="palette-hex">#C49427</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#9C2348;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">burgundy</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Burgundy</div>
+        <div class="palette-hex">#9C2348</div>
+      </div>
+    </div>
+
+    <div class="palette-group-label">Neutrals & Surfaces</div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#FFFFFF;border:1px solid #ddd;">
+        <span class="label" style="background:#223D72;color:white;">white</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">White</div>
+        <div class="palette-hex">#FFFFFF</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#F5F5F5;">
+        <span class="label">gray-100</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Light Surface</div>
+        <div class="palette-hex">#F5F5F5</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#E5E5E5;">
+        <span class="label">gray-200</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Border</div>
+        <div class="palette-hex">#E5E5E5</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#3A3A3A;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">gray-300</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Heading Text</div>
+        <div class="palette-hex">#3A3A3A</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#424242;">
+        <span class="label" style="background:rgba(255,255,255,0.85);">gray-400</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Dark Gray</div>
+        <div class="palette-hex">#424242</div>
+      </div>
+    </div>
+
+    <div class="palette-swatch">
+      <div class="palette-color" style="background:#4B4F58;">
+        <span class="label" style="background:rgba(255,255,255,0.75);">gray-500</span>
+      </div>
+      <div class="palette-info">
+        <div class="palette-name">Slate Gray</div>
+        <div class="palette-hex">#4B4F58</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Typography ─── -->
+<section>
+  <span class="section-label">02 · Typography</span>
+  <h2 class="section-title">Intro + Roboto + Roboto Slab</h2>
+  <p class="section-subtitle">Three-font system: Intro (brand/headings, geometric), Roboto (body, readable), Roboto Slab (secondary, editorial).</p>
+
+  <div class="type-grid">
+    <div class="type-card">
+      <div class="type-label">hero-display (h1)</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:48px;font-weight:100;line-height:56px;color:#223D72;">
+        Más que un proveedor de asistencia
+      </div>
+      <div class="type-meta">Intro · 48px · wght 100 · leading 56px</div>
+      <div class="type-note">* Original usa Intro (comercial). Preview con Outfit, sustituta gratuita.</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">hero-subtitle</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:24px;font-weight:200;color:#54595F;">
+        Somos su socio estratégico en experiencia de cliente
+      </div>
+      <div class="type-meta">Intro · 24px · wght 200</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">heading-lg (h2)</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:32px;font-weight:600;color:#223D72;">
+        Modelo de ingreso compartido
+      </div>
+      <div class="type-meta">Intro · 32px · wght 600</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">heading-md (h3)</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:26px;font-weight:600;color:#223D72;">
+        Acompañamiento experiencial continuo
+      </div>
+      <div class="type-meta">Intro · 26px · wght 600</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">icon-box-title</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:20px;font-weight:600;color:#223D72;">
+        Transformación positiva de imprevistos
+      </div>
+      <div class="type-meta">Intro · 20px · wght 600</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">icon-box-description</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:18px;font-weight:300;line-height:24px;color:#7A7A7A;">
+        Convertimos situaciones desafiantes en experiencias memorables que refuerzan la confianza en su empresa.
+      </div>
+      <div class="type-meta">Intro · 18px · wght 300 · leading 24px</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">body (Roboto)</div>
+      <div class="type-sample" style="font-family:'Roboto',sans-serif;font-size:15px;font-weight:400;line-height:1.65;color:#7A7A7A;">
+        En NKL Assistance diseñamos planes de asistencia para acompañar a sus clientes en cada momento de la experiencia con su servicio. Nuestra operación combina inteligencia artificial, automatización y analítica avanzada con el toque humano de operadores formados en hospitalidad.
+      </div>
+      <div class="type-meta">Roboto · 15px · wght 400 · leading 1.65</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-label">button-label</div>
+      <div class="type-sample" style="font-family:'Outfit','Intro',sans-serif;font-size:20px;font-weight:400;">
+        ¿Cómo funciona?
+      </div>
+      <div class="type-meta">Intro · 20px · wght 400 · uppercase opcional</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Components ─── -->
+<section>
+  <span class="section-label">03 · Components</span>
+  <h2 class="section-title">The Kit</h2>
+  <p class="section-subtitle">Pill-shaped buttons (33px radius) define the interaction language. Three variants cover all contexts.</p>
+
+  <div class="component-grid">
+
+    <!-- Button White Outline -->
+    <div class="component-card">
+      <div class="component-preview" style="background:#223D72;">
+        <button class="btn-nkla">¿Cómo funciona?</button>
+        <button class="btn-nkla" style="opacity:0.8;">Cotizar</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">button-primary (white outline)</div>
+        <div class="component-desc">On dark backgrounds. Transparent, 1px white border, 33px pill radius. Hover → accent fill (#E2E43C) + slate text.</div>
+        <div class="component-tags">
+          <span class="component-tag">pill 33px</span>
+          <span class="component-tag">Intro 20px</span>
+          <span class="component-tag">outline</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Navy Outline -->
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn-nkla-primary">Conózcanos más</button>
+        <button class="btn-nkla-primary" style="opacity:0.8;">Ver planes</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">button-secondary (navy outline)</div>
+        <div class="component-desc">On light backgrounds. Transparent, 1px navy (#223D72) border. Hover → navy fill + accent text.</div>
+        <div class="component-tags">
+          <span class="component-tag">pill 33px</span>
+          <span class="component-tag">navy border</span>
+          <span class="component-tag">light bg</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Button Accent Filled -->
+    <div class="component-card">
+      <div class="component-preview">
+        <button class="btn-nkla-accent">Solicitar demo</button>
+        <button class="btn-nkla-accent" style="opacity:0.85;">Descargar brochure</button>
+      </div>
+      <div class="component-info">
+        <div class="component-name">button-accent (filled)</div>
+        <div class="component-desc">Highest emphasis. Lime yellow fill (#E2E43C), slate text. Hover → transparent bg + accent border/text.</div>
+        <div class="component-tags">
+          <span class="component-tag">accent fill</span>
+          <span class="component-tag">highest emphasis</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="component-card">
+      <div class="component-preview" style="padding:0;">
+        <div class="hero-demo">
+          <div class="hero-bg-img"></div>
+          <div class="hero-content">
+            <h1>Más que un proveedor de asistencia,<br>somos su socio estratégico</h1>
+            <p>Diseñamos planes de asistencia que transforman la experiencia de sus clientes.</p>
+            <button class="btn-nkla">Conozca más</button>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">hero section</div>
+        <div class="component-desc">Full viewport (101vh) with dark overlay (multiply, 0.4 opacity). Content width: 60% (heading) / 79% (subtitle). Navy primary bg with background image.</div>
+        <div class="component-tags">
+          <span class="component-tag">101vh</span>
+          <span class="component-tag">multiply overlay</span>
+          <span class="component-tag">Intro 48px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icon Feature Cards (Dark) -->
+    <div class="component-card">
+      <div class="component-preview dark-overlay-bg" style="flex-direction:column;align-items:stretch;padding:24px;">
+        <div class="icon-feature-grid" style="gap:16px;">
+          <div class="icon-feature" style="padding:8px;">
+            <div class="icon">🤝</div>
+            <h3>Acompañamiento experiencial continuo</h3>
+            <p>Creamos una presencia constante donde cada interacción fortalece la lealtad del cliente.</p>
+          </div>
+          <div class="icon-feature" style="padding:8px;">
+            <div class="icon">✨</div>
+            <h3>Transformación positiva de imprevistos</h3>
+            <p>Convertimos situaciones desafiantes en experiencias memorables.</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">icon-feature (dark bg)</div>
+        <div class="component-desc">3-column grid on dark overlay background. Icon 80px (default view), title 20px/600, desc 18px/300. All Intro font, white text.</div>
+        <div class="component-tags">
+          <span class="component-tag">dark overlay</span>
+          <span class="component-tag">80px icon</span>
+          <span class="component-tag">Intro 20px/18px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Benefits Cards -->
+    <div class="component-card">
+      <div class="component-preview" style="flex-direction:column;align-items:stretch;padding:20px;">
+        <div class="benefits-grid" style="grid-template-columns:1fr 1fr;">
+          <div class="benefit-card">
+            <span class="stat">+40</span>
+            <h3>Incremento en satisfacción</h3>
+            <p>+40 puntos promedio de NPS en empresas que implementan nuestros programas</p>
+          </div>
+          <div class="benefit-card">
+            <span class="stat">30%</span>
+            <h3>Reducción de costos</h3>
+            <p>Hasta 30% mensuales gracias a la externalización de gestiones de emergencia</p>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">benefit-card</div>
+        <div class="component-desc">Stats + icon + title + description. Stat in Intro 24px/600, heading 20px/600 in navy, body in Roboto gray.</div>
+        <div class="component-tags">
+          <span class="component-tag">stats</span>
+          <span class="component-tag">benefits</span>
+          <span class="component-tag">navy headings</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="component-card">
+      <div class="component-preview" style="flex-direction:column;align-items:stretch;padding:0;background:#223D72;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 24px;width:100%;">
+          <div style="font-family:'Outfit','Intro',sans-serif;font-size:1.3rem;font-weight:600;color:var(--white);">
+            NKL <span style="color:var(--accent);">Assistance</span>
+          </div>
+          <div style="display:flex;gap:20px;">
+            <a href="#" style="font-family:Roboto,sans-serif;font-size:0.85rem;color:rgba(255,255,255,0.85);text-decoration:none;">Inicio</a>
+            <a href="#" style="font-family:Roboto,sans-serif;font-size:0.85rem;color:rgba(255,255,255,0.85);text-decoration:none;">¿Cómo funciona?</a>
+            <a href="#" style="font-family:Roboto,sans-serif;font-size:0.85rem;color:rgba(255,255,255,0.85);text-decoration:none;">Quiénes somos</a>
+            <a href="#" style="font-family:Roboto,sans-serif;font-size:0.85rem;color:rgba(255,255,255,0.85);text-decoration:none;">Contacto</a>
+          </div>
+        </div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">navigation (transparent header)</div>
+        <div class="component-desc">Transparent header on dark bg. Logo (Intro font 600), nav links (Roboto, white/85).</div>
+        <div class="component-tags">
+          <span class="component-tag">transparent</span>
+          <span class="component-tag">fixed</span>
+          <span class="component-tag">global</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partner Carousel -->
+    <div class="component-card">
+      <div class="component-preview" style="flex-direction:column;">
+        <div style="font-family:'Outfit','Intro',sans-serif;font-size:20px;font-weight:600;color:var(--primary);margin-bottom:16px;">Nuestros socios</div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
+          <div style="width:80px;height:40px;background:var(--surface-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text);">Hyatt</div>
+          <div style="width:80px;height:40px;background:var(--surface-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text);">Budget</div>
+          <div style="width:80px;height:40px;background:var(--surface-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text);">Ultramar</div>
+          <div style="width:80px;height:40px;background:var(--surface-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text);">Sixt</div>
+          <div style="width:80px;height:40px;background:var(--surface-border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--text);">Payless</div>
+        </div>
+      </div>
+      <div class="component-info">
+        <div class="component-name">partner carousel</div>
+        <div class="component-desc">Swiper carousel with client logos. 5 slides per view (desktop), autoplay 5s, 50px spacing. Brand heading in Intro 20px/600.</div>
+        <div class="component-tags">
+          <span class="component-tag">swiper</span>
+          <span class="component-tag">carousel</span>
+          <span class="component-tag">50px gap</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── Layout & Spacing ─── -->
+<section>
+  <span class="section-label">04 · Layout &amp; Spacing</span>
+  <h2 class="section-title">Rhythm & Containers</h2>
+  <p class="section-subtitle">Consistent 80px section padding. Elementor boxed container at 1140px. Flex gap 24px between columns.</p>
+
+  <div class="layout-grid">
+    <div class="layout-card">
+      <div class="lay-label">section padding</div>
+      <div class="lay-value">80px</div>
+      <div class="lay-detail">top & bottom</div>
+    </div>
+    <div class="layout-card">
+      <div class="lay-label">container</div>
+      <div class="lay-value">1140px</div>
+      <div class="lay-detail">Elementor boxed</div>
+    </div>
+    <div class="layout-card">
+      <div class="lay-label">column gap</div>
+      <div class="lay-value">24px</div>
+      <div class="lay-detail">flex row gap</div>
+    </div>
+    <div class="layout-card">
+      <div class="lay-label">hero width</div>
+      <div class="lay-value">60% / 79%</div>
+      <div class="lay-detail">heading / subtitle</div>
+    </div>
+    <div class="layout-card">
+      <div class="lay-label">button radius</div>
+      <div class="lay-value">33px</div>
+      <div class="lay-detail">pill shape</div>
+    </div>
+    <div class="layout-card">
+      <div class="lay-label">icon size</div>
+      <div class="lay-value">80px</div>
+      <div class="lay-detail">feature icons</div>
+    </div>
+  </div>
+
+  <div class="divider-accent"></div>
+  <p style="text-align:center;color:var(--text);font-size:0.85rem;font-weight:400;">
+    NKL Assistance Design System · v1.0 · 
+    <code style="background:var(--surface-light);padding:2px 6px;border-radius:3px;font-family:monospace;">proyectos/NKLA/DESIGN.md</code>
+  </p>
+</section>
+
+</div><!-- /container -->
+</body>
+</html>
