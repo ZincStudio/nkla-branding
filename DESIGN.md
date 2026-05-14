@@ -192,38 +192,48 @@ La paleta extendida incluye:
 
 | Uso | Fuente | Archivo Web | Archivo Impresión |
 |-----|--------|-------------|-------------------|
-| Display, headings, botones | Intro | `assets/fonts/INTRO ALT/*.woff2` (pesos: Light 100, Book 200, Bold 600, Black 800) | `assets/fonts/INTRO ALT/*.otf` |
+| Display, headings, botones | Intro | `design/assets/fonts/INTRO ALT/*.woff2` | `design/assets/fonts/INTRO ALT/*.otf` |
 | Body text | Roboto | Google Fonts | — |
-| Pull quotes, display serif | Baskervville/Baskerville | Google Fonts (Baskervville) `fonts.gstatic.com` | `assets/fonts/BASKERVILLE/Baskerville.ttc` |
+| Pull quotes, display serif | Baskervville/Baskerville | Google Fonts (Baskervville) | `design/assets/fonts/BASKERVILLE/Baskerville.ttc` |
 | Sustituto web de Intro | Outfit | Google Fonts | — |
 
 ### Sustituto para impresión
 Outfit (Google Fonts) reemplaza a Intro cuando esta no está disponible como fuente instalada.
 
 ### Carga web de Intro
-Intro es una fuente comercial. Los webfonts (woff2, woff) están en `assets/fonts/INTRO ALT/`. Usar @font-face apuntando a estos archivos o alojarlos en el servidor de producción. No está disponible en Google Fonts ni CDN gratuito.
+Intro es una fuente comercial. Los webfonts (woff2, woff) están en `design/assets/fonts/INTRO ALT/`. Usar @font-face apuntando a estos archivos o alojarlos en el servidor de producción. No está disponible en Google Fonts ni CDN gratuito.
 
 ## Brand Assets
 
 ### Logotipo Principal
-![NKLA Logo](assets/logo-nkla.svg)
+![NKLA Logo](design/assets/logo-nkla.svg)
 
-Ubicación física: `assets/logo-nkla.svg`
+Ubicación física: `design/assets/logo-nkla.svg`
 Uso: Fondo claro (#FFFFFF, #F5F5F5). No modificar proporciones. Espacio de respeto mínimo = alto del logo.
-Origen: `assets/logos/svg logos/logos_Artboard 1.svg` (archivo fuente)
+Origen: `design/assets/logos_Artboard 1.svg` (archivo fuente original)
 
 ### Logotipo (Versión Oscura / Blanca)
-![NKLA Logo Blanco](assets/logo-nkla-white.svg)
+![NKLA Logo Blanco](design/assets/logo-nkla-white.svg)
 
-Ubicación física: `assets/logo-nkla-white.svg`
+Ubicación física: `design/assets/logo-nkla-white.svg`
 Uso: Sobre fondos oscuros (navy #223D72, grises oscuros). No reducir opacidad.
-Origen: `assets/logos/svg logos/logos_Artboard 1 copy 2.svg` (archivo fuente)
+Origen: `design/assets/logos_Artboard 1 copy 2.svg` (archivo fuente original)
 
 ### Isotipo / Símbolo
-*Pendiente de generar.* No hay un isotipo independiente del logotipo completo disponible actualmente. Se requiere extraer el símbolo del logotipo (la "N" estilizada o el ícono representativo) como SVG independiente para favicon, avatar y aplicaciones reducidas.
+![NKLA Isotipo](design/assets/isotipo-nkla.svg)
+
+Ubicación física: `design/assets/isotipo-nkla.svg`
+Uso: Favicon, avatar, aplicaciones reducidas. Versión independiente del logotipo completo.
+Extraído del logotipo principal, conserva solo el marcador "NKL".
+
+### Isotipo (Versión Blanca)
+![NKLA Isotipo Blanco](design/assets/isotipo-nkla-white.svg)
+
+Ubicación física: `design/assets/isotipo-nkla-white.svg`
+Uso: Sobre fondos oscuros (navy, grises oscuros). Favicon en modo oscuro.
 
 ### Archivo Fuente (Editable)
-- `assets/logos/NKL_Assistance.ai` — Archivo Adobe Illustrator para edición profesional del logotipo.
+- `design/assets/logos/NKL_Assistance.ai` — Archivo Adobe Illustrator para edición profesional del logotipo.
 
 ### Tipografía para Impresión
 Para piezas impresas donde Intro no esté disponible como fuente instalada, usar:
