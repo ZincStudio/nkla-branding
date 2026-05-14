@@ -1,0 +1,14 @@
+# NKLA Project Root .gitignore
+# Only the branding directory is versioned at this level
+
+# Other projects within NKLA
+/Albatros/
+/Tren\ Maya/
+
+# System files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# OS metadata
+*.zip
