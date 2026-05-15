@@ -43,6 +43,7 @@ jobs:
           cp brand/spec-ia/spec/DESIGN.md _site/spec/DESIGN.md
           cp brand/spec-ia/spec/DESIGN.md _site/NKL-Assistance-DESIGN.md
           cp -r brand/assets _site/assets
+          cp CNAME _site/
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
