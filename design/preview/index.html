@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NKL Assistance — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Baskervville:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #223D72;
+  --navy-alt: #294E88;
+  --accent: #E2E43C;
+  --white: #FFFFFF;
+  --surface-light: #F5F5F5;
+  --surface-border: #E5E5E5;
+  --text: #7A7A7A;
+  --text-heading: #3A3A3A;
+  --slate: #54595F;
+  --orange-red: #EB5826;
+  --orange: #F68920;
+  --golden: #C49427;
+  --burgundy: #9C2348;
+  --gray-100: #F5F5F5;
+  --gray-200: #E5E5E5;
+  --gray-300: #3A3A3A;
+
+  --bg-page: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: rgba(34,61,114,0.03);
+  --bg-token-header: rgba(34,61,114,0.05);
+  --text-primary: #3A3A3A;
+  --text-secondary: #7A7A7A;
+  --border-color: #E5E5E5;
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.06);
+  --hover-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  --font-brand: 'Outfit', 'Intro', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Baskervville', Georgia, serif;
+
+  --radius-pill: 33px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+  --radius-full: 9999px;
+
+  --space-section: 80px;
+  --container-max: 1140px;
+}
+
+[data-theme="dark"] {
+  --bg-page: #0F1117;
+  --bg-card: #1A1D26;
+  --bg-card-hover: rgba(226,228,60,0.04);
+  --bg-token-header: rgba(226,228,60,0.06);
+  --text-primary: #E8E8ED;
+  --text-secondary: #9A9AA8;
+  --border-color: #2A2D38;
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.2);
+  --hover-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  --gray-100: #1A1D26;
+  --gray-200: #2A2D38;
+  --gray-300: #E8E8ED;
+  --text: #9A9AA8;
+  --text-heading: #E8E8ED;
+  --surface-light: #1A1D26;
+  --surface-border: #2A2D38;
+  --text-body: #9A9AA8;
+  --slate: #B0B0BE;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.65;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ═══ Header / Hero ═══ */
+.page-hero {
+  background: var(--primary);
+  color: var(--white);
+  padding: 64px 24px 56px;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+}
+.hero-inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+.hero-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.hero-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+}
+.hero-badge.featured {
+  background: var(--accent);
+  color: var(--slate);
+  border-color: var(--accent);
+}
+.hero-title {
+  font-family: var(--font-brand);
+  font-size: 2.8rem;
+  font-weight: 100;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+.hero-title strong { font-weight: 600; }
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 640px;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 32px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-brand);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+  background: transparent;
+}
+.btn-download:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+.btn-download.primary {
+  background: var(--accent);
+  color: var(--slate);
+  border-color: var(--accent);
+}
+.btn-download.primary:hover {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.5);
+}
+.btn-download .icon { font-size: 1.1rem; }
+
+.hero-meta {
+  display: flex;
+  gap: 24px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+}
+.hero-stat-value {
+  font-family: var(--font-brand);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.hero-stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ═══ Container ═══ */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 24px; }
+section { padding: var(--space-section) 0; }
+section + section { border-top: 1px solid var(--border-color); }
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.section-title {
+  font-family: var(--font-brand);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 32px;
+  font-weight: 300;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* ═══ Preview Frame ═══ */
+.preview-frame-wrap {
+  background: var(--surface-light);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.preview-frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.preview-frame-header .filename {
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.75rem;
+  color: var(--slate);
+}
+.preview-frame-header .dots {
+  display: flex;
+  gap: 6px;
+}
+.preview-frame-header .dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.preview-frame-header .dot.red { background: #FF5F57; }
+.preview-frame-header .dot.yellow { background: #FFBD2E; }
+.preview-frame-header .dot.green { background: #28C840; }
+.preview-frame-wrap iframe {
+  width: 100%;
+  height: 460px;
+  border: none;
+  display: block;
+}
+
+/* ═══ Token Table ═══ */
+.token-tables { display: flex; flex-direction: column; gap: 32px; }
+.token-group { }
+.token-group-title {
+  font-family: var(--font-brand);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-heading);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.token-group-title .count {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--surface-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+.token-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.token-table th {
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  background: var(--surface-light);
+  border-bottom: 2px solid var(--border-color);
+}
+.token-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.8rem;
+}
+.token-table td:first-child {
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.token-table td:last-child {
+  color: var(--slate);
+}
+.token-table tr:hover td { background: var(--bg-card-hover); }
+.token-table .token-header-row td {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--bg-token-header);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.color-dot {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* ═══ Component cards ═══ */
+.component-mini-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.component-mini-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  background: var(--bg-card);
+  transition: box-shadow 0.2s;
+}
+.component-mini-card:hover { box-shadow: var(--hover-shadow); }
+.component-mini-name {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.component-mini-preview {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.component-mini-desc {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.mini-btn {
+  font-family: var(--font-brand);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+  cursor: default;
+}
+.mini-btn.accent {
+  background: var(--accent);
+  color: var(--slate);
+  border-color: var(--accent);
+}
+.mini-btn.navy {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+/* ═══ Footer ═══ */
+.page-footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 24px 20px;
+  font-size: 0.8rem;
+}
+.page-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.page-footer a:hover { text-decoration: underline; }
+
+/* ═══ Responsive ═══ */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2rem; }
+  .hero-actions { flex-direction: column; }
+  .btn-download { width: 100%; justify-content: center; }
+  .preview-frame-wrap iframe { height: 320px; }
+  .token-table { font-size: 0.75rem; }
+  .token-table td, .token-table th { padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header class="page-hero">
+  <div class="hero-inner">
+    <div class="hero-badges">
+      <span class="hero-badge featured">★ Design System</span>
+      <span class="hero-badge">B2B Assistance</span>
+      <span class="hero-badge">v1.0</span>
+    </div>
+    <h1 class="hero-title">NKL <strong>Assistance</strong></h1>
+    <p class="hero-desc">
+      B2B assistance services — professional trust meets compassionate service.
+      Deep navy anchor with a distinctive lime-yellow accent. Human-centered typography.
+    </p>
+    <div class="hero-actions">
+      <a class="btn-download primary" href="/DESIGN.md" download>
+        <span class="icon">⬇</span> Download DESIGN.md
+      </a>
+      <a class="btn-download" href="/preview.html" download>
+        <span class="icon">⬇</span> Download Preview HTML
+      </a>
+      <a class="btn-download" href="/assets/logos/NKL_Assistance.ai" download>
+        <span class="icon">⬇</span> Download AI Source
+      </a>
+      <div style="flex:1;min-width:20px;"></div>
+      <div class="theme-toggle" style="display:flex;gap:4px;align-items:center;background:rgba(255,255,255,0.08);border-radius:33px;padding:3px;">
+        <button class="theme-btn" data-theme-btn="light" onclick="setTheme('light')" style="background:rgba(255,255,255,0.15);border:none;color:white;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;" title="Light mode">☀</button>
+        <button class="theme-btn" data-theme-btn="system" onclick="setTheme('system')" style="background:transparent;border:none;color:rgba(255,255,255,0.5);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.8rem;display:flex;align-items:center;justify-content:center;" title="System theme">◐</button>
+        <button class="theme-btn" data-theme-btn="dark" onclick="setTheme('dark')" style="background:transparent;border:none;color:rgba(255,255,255,0.5);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center;" title="Dark mode">☾</button>
+      </div>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <span class="hero-stat-value">28</span>
+        <span class="hero-stat-label">Color Tokens</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">3</span>
+        <span class="hero-stat-label">Font Families</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">8</span>
+        <span class="hero-stat-label">Components</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">5</span>
+        <span class="hero-stat-label">Radius Levels</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ═══ VISUAL PREVIEW (inline) ═══ -->
+<section>
+  <span class="section-label">01 · Visual Reference</span>
+  <h2 class="section-title">Brand in Context</h2>
+  <p class="section-subtitle">Key brand elements rendered live — hero section, color palette, buttons and typography hierarchy.</p>
+
+  <!-- Hero preview -->
+  <div style="background:var(--primary);border-radius:12px;overflow:hidden;margin-bottom:24px;position:relative;">
+    <div style="position:relative;z-index:1;padding:48px 40px 40px;">
+      <img src="/assets/logo-nkla-white.svg" alt="NKLA" style="height:36px;margin-bottom:32px;display:block;">
+      <div style="font-family:var(--font-brand);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:16px;">Asistencia Global 24/7</div>
+      <h2 style="font-family:var(--font-brand);font-size:2.5rem;font-weight:100;color:var(--white);line-height:1.05;margin-bottom:16px;">Tu tranquilidad<br>es <span style="color:var(--accent);font-style:italic;">nuestra prioridad</span></h2>
+      <p style="font-family:var(--font-brand);font-size:1rem;font-weight:200;color:rgba(255,255,255,0.65);max-width:500px;line-height:1.7;margin-bottom:32px;">Accede al programa de asistencia exclusivo para socios de NKL Assistance. Cobertura médica, viajes, vial y legal 24/7.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <button class="mini-btn accent" style="font-size:0.9rem;padding:14px 36px;cursor:default;">Solicitar asistencia</button>
+        <button class="mini-btn" style="font-size:0.9rem;padding:14px 36px;background:transparent;color:white;border-color:rgba(255,255,255,0.3);cursor:default;">Descubrir beneficios</button>
+      </div>
+    </div>
+    <div style="position:absolute;top:0;right:0;width:40%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(41,78,136,0.6) 100%);z-index:0;"></div>
+  </div>
+
+  <!-- Color palette strip -->
+  <div style="display:flex;gap:0;border-radius:10px;overflow:hidden;margin-bottom:24px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+    <div style="flex:3;background:#223D72;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#223D72</div>
+    <div style="flex:2;background:#294E88;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#294E88</div>
+    <div style="flex:2;background:#E2E43C;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(41,78,136,0.9);font-weight:600;">#E2E43C</div>
+    <div style="flex:2;background:#54595F;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#54595F</div>
+    <div style="flex:1;background:#EB5826;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#EB5826</div>
+    <div style="flex:1;background:#F68920;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#F68920</div>
+    <div style="flex:1;background:#C49427;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#C49427</div>
+    <div style="flex:1;background:#9C2348;display:flex;align-items:center;justify-content:center;font-family:monospace;font-size:0.7rem;color:rgba(255,255,255,0.8);">#9C2348</div>
+  </div>
+
+  <!-- Typography demo -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+    <div style="border:1px solid var(--surface-border);border-radius:8px;padding:20px;">
+      <div style="font-family:var(--font-brand);font-size:2.2rem;font-weight:100;line-height:1.1;color:var(--text-heading);margin-bottom:4px;">Hero Display</div>
+      <div style="font-size:0.7rem;color:var(--text);">Intro Light 100 · 48px</div>
+    </div>
+    <div style="border:1px solid var(--surface-border);border-radius:8px;padding:20px;">
+      <div style="font-family:var(--font-brand);font-size:1.5rem;font-weight:600;color:var(--text-heading);margin-bottom:4px;">Heading</div>
+      <div style="font-size:0.7rem;color:var(--text);">Intro 600 · 32px</div>
+    </div>
+    <div style="border:1px solid var(--surface-border);border-radius:8px;padding:20px;">
+      <div style="font-family:var(--font-body);font-size:1rem;font-weight:400;color:var(--text);line-height:1.6;margin-bottom:4px;">Body text in Roboto. Professional trust meets compassionate service. Every interaction matters.</div>
+      <div style="font-size:0.7rem;color:var(--text);">Roboto 400 · 15px</div>
+    </div>
+    <div style="border:1px solid var(--surface-border);border-radius:8px;padding:20px;">
+      <div style="font-family:var(--font-serif);font-size:1.3rem;font-weight:400;font-style:italic;color:var(--text-heading);margin-bottom:4px;">“The difference between ordinary and extraordinary is that little extra.”</div>
+      <div style="font-size:0.7rem;color:var(--text);">Baskervville Italic · 22px (pullquote)</div>
+    </div>
+  </div>
+
+  <!-- Buttons demo -->
+  <div style="display:flex;gap:12px;flex-wrap:wrap;">
+    <button class="mini-btn accent" style="font-size:0.85rem;padding:12px 28px;cursor:default;">button-primary</button>
+    <button class="mini-btn" style="font-size:0.85rem;padding:12px 28px;cursor:default;">button-secondary</button>
+    <button class="mini-btn navy" style="font-size:0.85rem;padding:12px 28px;cursor:default;">button-dark</button>
+  </div>
+</section>
+
+<!-- ═══ DESIGN TOKENS ═══ -->
+<section>
+  <span class="section-label">02 · Design Tokens</span>
+  <h2 class="section-title">Prompt Context Source</h2>
+  <p class="section-subtitle">Machine-readable tokens from DESIGN.md. Copy-paste these into any AI agent prompt for on-brand generation using Intro, Roboto, navy (#223D72) and lime (#E2E43C).</p>
+
+  <div class="token-tables">
+
+    <!-- Colors -->
+    <div class="token-group">
+      <div class="token-group-title">
+        Colors <span class="count">28 tokens</span>
+      </div>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="2" class="token-header-row">Primary Brand Colors</td></tr>
+          <tr><td><span class="color-dot" style="background:#223D72"></span>primary</td><td>#223D72</td></tr>
+          <tr><td><span class="color-dot" style="background:#294E88"></span>navy-alt</td><td>#294E88</td></tr>
+          <tr><td><span class="color-dot" style="background:#E2E43C"></span>accent-primary</td><td>#E2E43C</td></tr>
+          <tr><td><span class="color-dot" style="background:#54595F"></span>secondary / slate</td><td>#54595F</td></tr>
+          <tr><td><span class="color-dot" style="background:#7A7A7A"></span>text-body</td><td>#7A7A7A</td></tr>
+          <tr><td><span class="color-dot" style="background:#FFFFFF;border-color:#ccc"></span>neutral</td><td>#FFFFFF</td></tr>
+
+          <tr><td colspan="2" class="token-header-row">Accent Variations</td></tr>
+          <tr><td><span class="color-dot" style="background:#EB5826"></span>accent-secondary (orange-red)</td><td>#EB5826</td></tr>
+          <tr><td><span class="color-dot" style="background:#F68920"></span>accent-tertiary (orange)</td><td>#F68920</td></tr>
+          <tr><td><span class="color-dot" style="background:#C49427"></span>golden</td><td>#C49427</td></tr>
+          <tr><td><span class="color-dot" style="background:#9C2348"></span>burgundy</td><td>#9C2348</td></tr>
+
+          <tr><td colspan="2" class="token-header-row">Surfaces &amp; Text</td></tr>
+          <tr><td><span class="color-dot" style="background:#F5F5F5"></span>surface-light</td><td>#F5F5F5</td></tr>
+          <tr><td><span class="color-dot" style="background:#E5E5E5"></span>surface-border</td><td>#E5E5E5</td></tr>
+          <tr><td><span class="color-dot" style="background:#3A3A3A"></span>text-heading</td><td>#3A3A3A</td></tr>
+          <tr><td><span class="color-dot" style="background:#424242"></span>gray-400</td><td>#424242</td></tr>
+          <tr><td><span class="color-dot" style="background:#4B4F58"></span>gray-500</td><td>#4B4F58</td></tr>
+          <tr><td><span class="color-dot" style="background:#0170B9"></span>link-blue</td><td>#0170B9</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Typography -->
+    <div class="token-group">
+      <div class="token-group-title">
+        Typography <span class="count">15 scales</span>
+      </div>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Family</th><th>Size</th><th>Weight</th><th>Line H</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>hero-display</td><td>Intro</td><td>48px</td><td>100</td><td>56px</td></tr>
+          <tr><td>hero-subtitle</td><td>Intro</td><td>24px</td><td>200</td><td>1.4</td></tr>
+          <tr><td>heading-lg</td><td>Intro</td><td>32px</td><td>600</td><td>1.3</td></tr>
+          <tr><td>heading-md</td><td>Intro</td><td>26px</td><td>600</td><td>1.3</td></tr>
+          <tr><td>heading-sm</td><td>Roboto</td><td>20px</td><td>600</td><td>1.2</td></tr>
+          <tr><td>body-lg</td><td>Roboto</td><td>1.125rem</td><td>400</td><td>1.65</td></tr>
+          <tr><td>body-md</td><td>Roboto</td><td>15px</td><td>400</td><td>1.65</td></tr>
+          <tr><td>body-sm</td><td>Roboto</td><td>0.875rem</td><td>400</td><td>1.5</td></tr>
+          <tr><td>button-label</td><td>Intro</td><td>20px</td><td>400</td><td>1</td></tr>
+          <tr><td>display-serif</td><td>Baskervville</td><td>28px</td><td>400</td><td>1.3</td></tr>
+          <tr><td>pullquote</td><td>Baskervville</td><td>22px</td><td>400 italic</td><td>1.4</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Spacing & Radius -->
+    <div class="token-group">
+      <div class="token-group-title">
+        Spacing &amp; Radius <span class="count">12 tokens</span>
+      </div>
+      <table class="token-table">
+        <thead>
+          <tr><th>Token</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          <tr><td colspan="2" class="token-header-row">Spacing</td></tr>
+          <tr><td>section padding</td><td>80px</td></tr>
+          <tr><td>container max-width</td><td>1140px</td></tr>
+          <tr><td>xl</td><td>32px</td></tr>
+          <tr><td>lg</td><td>24px</td></tr>
+          <tr><td>md</td><td>16px</td></tr>
+          <tr><td>sm</td><td>8px</td></tr>
+          <tr><td>xs</td><td>4px</td></tr>
+
+          <tr><td colspan="2" class="token-header-row">Border Radius</td></tr>
+          <tr><td>xl / pill</td><td>33px</td></tr>
+          <tr><td>lg</td><td>12px</td></tr>
+          <tr><td>md</td><td>8px</td></tr>
+          <tr><td>sm</td><td>4px</td></tr>
+          <tr><td>full</td><td>9999px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ COMPONENTS ═══ -->
+<section>
+  <span class="section-label">03 · Components</span>
+  <h2 class="section-title">The Kit</h2>
+  <p class="section-subtitle">Pill-shaped buttons (33px radius) define the interaction language. Three variants cover all contexts — accent fill for primary CTAs, navy outline for secondary.</p>
+
+  <div class="component-mini-grid">
+    <div class="component-mini-card">
+      <div class="component-mini-name">button-primary</div>
+      <div class="component-mini-preview">
+        <button class="mini-btn accent">Solicitar demo</button>
+      </div>
+      <div class="component-mini-desc">Lime fill (#E2E43C), slate text (#54595F). Pill 33px. Highest emphasis. Hover → transparent.</div>
+    </div>
+    <div class="component-mini-card">
+      <div class="component-mini-name">button-secondary</div>
+      <div class="component-mini-preview">
+        <button class="mini-btn">Conózcanos más</button>
+      </div>
+      <div class="component-mini-desc">Transparent, navy border (#223D72). For light backgrounds. Hover → navy fill + accent text.</div>
+    </div>
+    <div class="component-mini-card">
+      <div class="component-mini-name">button-primary (dark)</div>
+      <div class="component-mini-preview" style="background:var(--primary);padding:12px;border-radius:6px;">
+        <button class="mini-btn" style="background:transparent;color:white;border-color:rgba(255,255,255,0.4);">Request assistance</button>
+      </div>
+      <div class="component-mini-desc">On dark bg: transparent with white border. Hover → lime fill.</div>
+    </div>
+    <div class="component-mini-card">
+      <div class="component-mini-name">icon-feature</div>
+      <div class="component-mini-preview" style="background:var(--primary);padding:16px;border-radius:6px;">
+        <div style="width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.3);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;">💬</div>
+      </div>
+      <div class="component-mini-desc">80px circle (scaled). Transparent bg, white icon. Used on dark navy sections.</div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /container -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="page-footer">
+  NKL Assistance · Design System v1.0 · 
+  <a href="https://brand.nklassistance.com" target="_blank">brand.nklassistance.com</a>
+  <br>
+  <span style="font-size:0.7rem;opacity:0.6;">Intro font commercial license required · Baskervville via Google Fonts · Outfit as print substitute</span>
+</footer>
+
+<script>
+// Theme switcher — light / dark / system
+(function() {
+  const theme = localStorage.getItem('nkla-theme') || 'system';
+  applyTheme(theme);
+  updateButtons(theme);
+
+  function applyTheme(t) {
+    let resolved = t;
+    if (t === 'system') {
+      resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', resolved);
+    // Keep hero always navy
+    document.querySelector('.page-hero').style.background = '#223D72';
+  }
+
+  function updateButtons(active) {
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      const mode = btn.getAttribute('data-theme-btn');
+      if (mode === active) {
+        btn.style.background = 'rgba(255,255,255,0.15)';
+        btn.style.color = 'white';
+      } else {
+        btn.style.background = 'transparent';
+        btn.style.color = 'rgba(255,255,255,0.5)';
+      }
+    });
+  }
+
+  window.setTheme = function(t) {
+    localStorage.setItem('nkla-theme', t);
+    applyTheme(t);
+    updateButtons(t);
+  };
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const t = localStorage.getItem('nkla-theme') || 'system';
+    if (t === 'system') {
+      applyTheme('system');
+      updateButtons('system');
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
