@@ -5,18 +5,19 @@ Identidad visual de NKL Assistance. Diseñado para consumo humano y para agentes
 ## Estructura
 
 ```
-brand/
 ├── README.md                        ← Este archivo. Entry point.
+├── CNAME                            ← Custom domain: brand.nklassistance.com
 ├── spec-ia/                         ← Spec visual para IA
 │   ├── index.html                   ← Viewer interactivo (doble clic)
 │   └── spec/                        ← Descargables — spec en bruto
 │       ├── DESIGN.md                ← Tokens de marca (fuente de verdad para IA)
 │       ├── preview.html             ← Preview standalone
+│       ├── build-preview.py         ← Script para regenerar tokens desde DESIGN.md
 │       ├── tokens.json              ← Tokens en JSON
 │       └── tokens.js                ← Tokens como variable JS
 ├── assets/                          ← Descargables (logos, isotipos, fuentes, patrones)
 ├── especificaciones/                ← Documentación técnica detallada
-├── impresion/                       ← Guías de impresión (CMYK, Pantone, sangrados)
+└── impresion/                       ← Guías de impresión (CMYK, Pantone, sangrados)
 ```
 
 ## Cómo usar
