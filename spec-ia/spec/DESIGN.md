@@ -56,7 +56,7 @@ typography:
     lineHeight: 1.65
   body-md:
     fontFamily: Roboto
-    fontSize: 15px
+    fontSize: 16px
     fontWeight: 400
     lineHeight: 1.65
   body-sm:
