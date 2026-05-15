@@ -18,7 +18,7 @@ import os
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DESIGN_MD = os.path.join(ROOT, 'design', 'DESIGN.md')
 OUTPUT_JSON = os.path.join(ROOT, 'design', 'preview', 'tokens.json')
-OUTPUT_JS = os.path.join(ROOT, 'design', 'preview', 'tokens.js')
+INDEX_HTML = os.path.join(ROOT, 'design', 'preview', 'index.html')
 
 def resolve_ref(value, tokens):
     """Resuelve referencias estilo {colors.primary}"""
@@ -73,13 +73,16 @@ def build():
     with open(OUTPUT_JSON, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
-    # tokens.js (variable global NKLA_TOKENS para <script>)
-    js = 'var NKLA_TOKENS = ' + json.dumps(data, indent=2, ensure_ascii=False) + ';'
-    with open(OUTPUT_JS, 'w', encoding='utf-8') as f:
-        f.write(js)
+    # Inject tokens into index.html (works in all browsers, no file:// CORS)
+    js_data = json.dumps(data, indent=2, ensure_ascii=False)
+    with open(INDEX_HTML, 'r', encoding='utf-8') as f:
+        html = f.read()
+    html = html.replace('/*TOKENS*/', 'var NKLA_TOKENS = ' + js_data + ';')
+    with open(INDEX_HTML, 'w', encoding='utf-8') as f:
+        f.write(html)
 
-    print(f'✅ JSON: {OUTPUT_JSON}')
-    print(f'✅ JS:   {OUTPUT_JS}')
+    print(f'✅ JSON:  {OUTPUT_JSON}')
+    print(f'✅ HTML:  tokens injectados en {INDEX_HTML}')
     print(f'   {len(data["colors"])} colores · {len(data["typography"])} tipografías · {len(data["components"])} componentes')
 
 if __name__ == '__main__':
