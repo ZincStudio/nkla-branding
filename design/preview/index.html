@@ -434,13 +434,13 @@ section + section { border-top: 1px solid var(--border-color); }
       Deep navy anchor with a distinctive lime-yellow accent. Human-centered typography.
     </p>
     <div class="hero-actions">
-      <a class="btn-download primary" href="/DESIGN.md" download>
+      <a class="btn-download primary" href="/DESIGN.md" download id="dl-designmd">
         <span class="icon">⬇</span> Download DESIGN.md
       </a>
-      <a class="btn-download" href="/preview.html" download>
+      <a class="btn-download" href="/preview.html" download id="dl-preview">
         <span class="icon">⬇</span> Download Preview HTML
       </a>
-      <a class="btn-download" href="/assets/logos/NKL_Assistance.ai" download>
+      <a class="btn-download" href="/assets/logos/NKL_Assistance.ai" download id="dl-ai">
         <span class="icon">⬇</span> Download AI Source
       </a>
       <div style="flex:1;min-width:20px;"></div>
@@ -482,7 +482,7 @@ section + section { border-top: 1px solid var(--border-color); }
   <!-- Hero preview -->
   <div style="background:var(--primary);border-radius:12px;overflow:hidden;margin-bottom:24px;position:relative;">
     <div style="position:relative;z-index:1;padding:48px 40px 40px;">
-      <img src="/assets/logo-nkla-white.svg" alt="NKLA" style="height:36px;margin-bottom:32px;display:block;">
+      <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c3ZnIGlkPSJ1dWlkLTNhYmIxM2U5LWQwNzItNDE2Ni05MGIzLWZjNDM2OGNlYWIzMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjQ1LjExIDExNy4wMiI+PHBvbHlnb24gcG9pbnRzPSIzMi45OCAxMS42NiA2Mi43MyA1MC4zNiA2Mi43MyAxMS42NiA3OS42NiAxMS42NiA3OS42NiA3OS4zOCA2NC45IDc5LjM4IDM0LjY3IDM5LjcxIDM0LjY3IDc5LjM4IDE4LjI1IDc5LjM1IDE4LjIyIDExLjY2IDMyLjk4IDExLjY2IiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwb2x5Z29uIHBvaW50cz0iMTA5LjY1IDExLjY2IDEwOS42NSA0MS4xNiAxNDAuODUgMTEuNjYgMTYwLjY3IDExLjY2IDEwOS42NSA2Mi42OSAxMDkuNjUgNzkuMzggOTIuNzIgNzkuMzggOTIuNzIgMTEuNjYgMTA5LjY1IDExLjY2IiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwb2x5Z29uIHBvaW50cz0iMTgyLjY5IDExLjY2IDE4Mi42OSA2Mi45MyAyMTkuOTQgNjIuOTMgMjE5Ljk0IDc5LjM4IDE2NS43NiA3OS4zOCAxNjUuNzYgMjUuNDggMTc5LjYgMTEuNjYgMTgyLjY5IDExLjY2IiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwb2x5Z29uIHBvaW50cz0iMTYzLjM0IDc5LjM4IDE0MS4wOCA3OS4zOCAxMjYuODIgNjQuMzggMTM3LjcgNTMuNTEgMTYzLjM0IDc5LjM4IiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwYXRoIGQ9Ik0yMC4wNiwxMDMuNTlsLTEuNjIsMy40M2gtMS43MnYtLjIybDYuNDYtMTMuNzFoLjc1bDYuNCwxMy43MXYuMjJoLTEuN2wtMS42Mi0zLjQzaC02LjkzWk0yMC42MSwxMDIuMTZoNS44MmwtMi45MS02LjQ4LTIuOTEsNi40OFoiIHN0eWxlPSJmaWxsOiNmZmY7Ii8+PHBhdGggZD0iTTQxLjUxLDEwMy4yM2MuMSwxLjg2LDIuMjQsMi41OCwzLjk0LDIuNTgsMS42Ni0uMDYsMy43LS42MywzLjc2LTIuNjUsMC0yLjI0LTIuMS0yLjI4LTMuOTgtMi41NC0yLjUyLS4yNi01LjA1LS45MS01LjA1LTMuNjhzMi41OS00LjAyLDUuMDMtNC4wMmMyLjQtLjA2LDUuMDksMS4xMSw1LjE5LDMuOGgtMS41NGMtLjE2LTEuNzYtMi4wMi0yLjMyLTMuNi0yLjMyLTEuNTMuMDYtMy40My42OS0zLjQzLDIuNTIsMCwyLjA2LDIsMi4xNCwzLjY4LDIuMzYsMi43NS4zMiw1LjMzLjgxLDUuMzMsMy44OHMtMi44NSw0LjA0LTUuMzcsNC4xYy0yLjU3LjA2LTUuNDctMS4xNy01LjU3LTQuMDJoMS42WiIgc3R5bGU9ImZpbGw6I2ZmZjsiLz48cGF0aCBkPSJNNjMuMDMsMTAzLjIzYy4xLDEuODYsMi4yNCwyLjU4LDMuOTQsMi41OCwxLjY2LS4wNiwzLjctLjYzLDMuNzYtMi42NSwwLTIuMjQtMi4xLTIuMjgtMy45OC0yLjU0LTIuNTItLjI2LTUuMDUtLjkxLTUuMDUtMy42OHMyLjU5LTQuMDIsNS4wMy00LjAyYzIuNC0uMDYsNS4wOSwxLjExLDUuMTksMy44aC0xLjU0Yy0uMTYtMS43Ni0yLjAyLTIuMzItMy42LTIuMzItMS41My4wNi0zLjQzLjY5LTMuNDMsMi41MiwwLDIuMDYsMiwyLjE0LDMuNjgsMi4zNiwyLjc1LjMyLDUuMzMuODEsNS4zMywzLjg4cy0yLjg1LDQuMDQtNS4zNyw0LjFjLTIuNTcuMDYtNS40Ny0xLjE3LTUuNTctNC4wMmgxLjZaIiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwYXRoIGQ9Ik04OS4yLDEwNS42OXYxLjMzaC02LjQ2di0xLjMzaDIuNHYtMTEuMjNoLTIuMjR2LTEuMzFoNi4xNHYxLjMxaC0yLjI0djExLjIzaDIuNFoiIHN0eWxlPSJmaWxsOiNmZmY7Ii8+PHBhdGggZD0iTTEwMS4xOSwxMDMuMjNjLjEsMS44NiwyLjI0LDIuNTgsMy45NCwyLjU4LDEuNjYtLjA2LDMuNy0uNjMsMy43Ni0yLjY1LDAtMi4yNC0yLjEtMi4yOC0zLjk4LTIuNTQtMi41Mi0uMjYtNS4wNS0uOTEtNS4wNS0zLjY4czIuNTktNC4wMiw1LjAzLTQuMDJjMi40LS4wNiw1LjA5LDEuMTEsNS4xOSwzLjhoLTEuNTRjLS4xNi0xLjc2LTIuMDItMi4zMi0zLjYtMi4zMi0xLjUzLjA2LTMuNDMuNjktMy40MywyLjUyLDAsMi4wNiwyLDIuMTQsMy42OCwyLjM2LDIuNzUuMzIsNS4zMy44MSw1LjMzLDMuODhzLTIuODUsNC4wNC01LjM3LDQuMWMtMi41Ny4wNi01LjQ3LTEuMTctNS41Ny00LjAyaDEuNloiIHN0eWxlPSJmaWxsOiNmZmY7Ii8+PHBhdGggZD0iTTEyMC4zOSw5NC42NHYtMS40OWgxMC4xNnYxLjQ5aC00LjI4djEyLjM4aC0xLjZ2LTEyLjM4aC00LjI4WiIgc3R5bGU9ImZpbGw6I2ZmZjsiLz48cGF0aCBkPSJNMTQxLjk5LDEwMy41OWwtMS42MiwzLjQzaC0xLjcydi0uMjJsNi40Ni0xMy43MWguNzVsNi40LDEzLjcxdi4yMmgtMS43bC0xLjYyLTMuNDNoLTYuOTNaTTE0Mi41NCwxMDIuMTZoNS44MmwtMi45MS02LjQ4LTIuOTEsNi40OFoiIHN0eWxlPSJmaWxsOiNmZmY7Ii8+PHBhdGggZD0iTTE2NC41MSw5Ni41NGwuMTQsMy44djYuNjdoLTEuNjR2LTEzLjloLjU3bDkuMDMsMTAuNS0uMTgtMy45OHYtNi41aDEuNjZ2MTMuOWgtLjU0bC05LjA1LTEwLjVaIiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwYXRoIGQ9Ik0xOTIuNjcsOTIuOTljMi42NywwLDUuMzMsMS40NSw2LjE2LDQuMzRoLTEuNmMtLjg1LTEuODgtMi41NS0yLjgxLTQuNTUtMi44MS0zLjE5LS4wNi01LjMzLDIuMzQtNS4zMyw1LjU3czIuMTIsNS41Nyw1LjMxLDUuNTdjMi4xMiwwLDMuOTItMS4wNyw0LjY1LTMuMDdoMS42Yy0uNzksMy4xMS0zLjQ3LDQuNTktNi4yNCw0LjU5LTMuODYsMC03LjAxLTIuNzMtNy4wMS03LjA5czMuMTEtNy4xNSw3LjAxLTcuMDlaIiBzdHlsZT0iZmlsbDojZmZmOyIvPjxwYXRoIGQ9Ik0yMTguMzgsOTQuNmgtNi40djQuNTRoNi4xOHYxLjQ1aC02LjE4djQuOTFoNi42MnYxLjUzaC04LjI4di0xMy44Nmg4LjA2djEuNDVaIiBzdHlsZT0iZmlsbDojZmZmOyIvPjwvc3ZnPg==" alt="NKLA" style="height:36px;margin-bottom:32px;display:block;">
       <div style="font-family:var(--font-brand);font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:4px;color:var(--accent);margin-bottom:16px;">Asistencia Global 24/7</div>
       <h2 style="font-family:var(--font-brand);font-size:2.5rem;font-weight:100;color:var(--white);line-height:1.05;margin-bottom:16px;">Tu tranquilidad<br>es <span style="color:var(--accent);font-style:italic;">nuestra prioridad</span></h2>
       <p style="font-family:var(--font-brand);font-size:1rem;font-weight:200;color:rgba(255,255,255,0.65);max-width:500px;line-height:1.7;margin-bottom:32px;">Accede al programa de asistencia exclusivo para socios de NKL Assistance. Cobertura médica, viajes, vial y legal 24/7.</p>
@@ -683,48 +683,35 @@ section + section { border-top: 1px solid var(--border-color); }
 </footer>
 
 <script>
+// Fix download links for local file://
+(function() {
+  if (location.protocol === 'file:') {
+    var ids = { 'dl-designmd': '../DESIGN.md', 'dl-preview': 'preview.html', 'dl-ai': '../assets/logos/NKL_Assistance.ai' };
+    for (var id in ids) { var el = document.getElementById(id); if (el) el.href = ids[id]; }
+  }
+})();
+
 // Theme switcher — light / dark / system
 (function() {
   const theme = localStorage.getItem('nkla-theme') || 'system';
   applyTheme(theme);
   updateButtons(theme);
-
   function applyTheme(t) {
     let resolved = t;
-    if (t === 'system') {
-      resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    }
+    if (t === 'system') resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', resolved);
-    // Keep hero always navy
     document.querySelector('.page-hero').style.background = '#223D72';
   }
-
   function updateButtons(active) {
     document.querySelectorAll('.theme-btn').forEach(btn => {
       const mode = btn.getAttribute('data-theme-btn');
-      if (mode === active) {
-        btn.style.background = 'rgba(255,255,255,0.15)';
-        btn.style.color = 'white';
-      } else {
-        btn.style.background = 'transparent';
-        btn.style.color = 'rgba(255,255,255,0.5)';
-      }
+      btn.style.background = mode === active ? 'rgba(255,255,255,0.15)' : 'transparent';
+      btn.style.color = mode === active ? 'white' : 'rgba(255,255,255,0.5)';
     });
   }
-
-  window.setTheme = function(t) {
-    localStorage.setItem('nkla-theme', t);
-    applyTheme(t);
-    updateButtons(t);
-  };
-
-  // Listen for system theme changes
+  window.setTheme = function(t) { localStorage.setItem('nkla-theme', t); applyTheme(t); updateButtons(t); };
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    const t = localStorage.getItem('nkla-theme') || 'system';
-    if (t === 'system') {
-      applyTheme('system');
-      updateButtons('system');
-    }
+    if ((localStorage.getItem('nkla-theme') || 'system') === 'system') { applyTheme('system'); updateButtons('system'); }
   });
 })();
 </script>

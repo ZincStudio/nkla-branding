@@ -23,14 +23,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      
+      - name: Install PyYAML
+        run: pip install pyyaml
+      
+      - name: Generate preview from DESIGN.md
+        run: python3 build-preview.py
+      
       - name: Prepare preview assets
         run: |
           mkdir -p _site
           cp -r design/preview/* _site/
           cp -r design/assets _site/assets
-          cp DESIGN.md _site/DESIGN.md
-          # Create a copy of DESIGN.md for direct download
-          cp DESIGN.md _site/NKL-Assistance-DESIGN.md
+          cp design/DESIGN.md _site/DESIGN.md
+          cp design/DESIGN.md _site/NKL-Assistance-DESIGN.md
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
