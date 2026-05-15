@@ -32,15 +32,17 @@ jobs:
         run: pip install pyyaml
       
       - name: Generate preview from DESIGN.md
-        run: python3 build-preview.py
+        run: python3 brand/spec-ia/spec/build-preview.py
       
       - name: Prepare preview assets
         run: |
           mkdir -p _site
-          cp -r design/preview/* _site/
-          cp -r design/assets _site/assets
-          cp design/DESIGN.md _site/DESIGN.md
-          cp design/DESIGN.md _site/NKL-Assistance-DESIGN.md
+          cp brand/spec-ia/index.html _site/
+          cp brand/spec-ia/spec/preview.html _site/
+          mkdir -p _site/spec
+          cp brand/spec-ia/spec/DESIGN.md _site/spec/DESIGN.md
+          cp brand/spec-ia/spec/DESIGN.md _site/NKL-Assistance-DESIGN.md
+          cp -r brand/assets _site/assets
           
       - name: Setup Pages
         uses: actions/configure-pages@v4
